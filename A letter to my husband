@@ -292,15 +292,15 @@
   <div class="wrap">
     <div class="card">
       <div class="topRow">
-        <div class="badge">💘 Valentine’s • <span id="today"></span></div>
-        <button class="secondary" id="musicBtn">🎵 Play his favorite song</button>
+        <div class="badge">💘 Valentine’s • <span id="February 14, 2026"></span></div>
+        <button class="secondary" id="musicBtn">🎵 close your eyes & listen</button>
       </div>
 
       <h1 class="title">My dear husband 💙</h1>
       <p class="subtitle">Happy Valentine’s Day. I made this just for you 😄</p>
 
       <div class="panel">
-        <p class="question">Do you want to see what I have for you today??</p>
+        <p class="question">Do you want to see what I have for you today🥰🥰🥰??</p>
         <div class="btnRow">
           <button id="yesBtn">Yes 😌</button>
           <button class="secondary" id="noBtn">No 🙃</button>
@@ -314,7 +314,7 @@
                 <div class="flap"></div>
                 <div class="stamp">💌</div>
                 <div class="toLine">
-                  <div>To: <span id="hisName">My Love</span></div>
+                  <div>To: <span id="My forever Valentine">💘</span></div>
                   <div style="font-size:13px; font-weight:700; opacity:.7;">From: Your Wife 🤍</div>
                 </div>
               </div>
@@ -326,18 +326,14 @@
             </div>
 
             <div class="letter" id="letter">
-Hi my love,
+My dear husband,
 
-WRITE YOUR MESSAGE HERE 💌
-(You can make it emotional + funny!)
+Happy Valentine’s Day ❤️
 
-Example:
-Thank you for choosing me every day.
-Even when we argue, I still choose you 😄
-You’re my favorite person and my safest place.
+I hope you remember how special this Valentine’s Day is… our very first as husband and wife, not only officially, but married before God and before everyone.
 
-Happy Valentine’s Day 🤍
-Love, Nana
+I just want to remind you that I meant every single vow I made to you. I love you so much, and I will love you forever. ♥️
+Love
             </div>
           </div>
 
@@ -347,7 +343,7 @@ Love, Nana
             <div style="font-weight:900; font-size:18px;">Ehhh okay…</div>
             <div style="color:rgba(17,24,39,.75); margin-top:6px; line-height:1.5;">
               I’ll just keep your gift for myself then 😌🎁<br/>
-              (But be careful… I might eat the chocolates.)
+              (But be careful… I might enjoy this alone.)
             </div>
             <p class="smallNote">Click “Yes” if you change your mind 😄</p>
           </div>
@@ -363,7 +359,7 @@ Love, Nana
   <!-- Music Modal -->
   <dialog id="musicModal">
     <div class="modalHead">
-      <div>🎶 Our Song</div>
+      <div>🎶 close your eyes & listen</div>
       <button class="closeX" id="closeMusic" aria-label="Close">✕</button>
     </div>
     <div class="videoWrap">
@@ -375,8 +371,8 @@ Love, Nana
 
   <script>
     // ====== PERSONALIZE THESE ======
-    const HIS_NAME = "PUT_HIS_NAME_HERE"; // e.g. "Mike"
-    const YOUTUBE_VIDEO_ID = "PUT_YOUTUBE_ID_HERE"; // e.g. "dQw4w9WgXcQ"
+    const HIS_NAME = "My forever valantine"; // e.g. "Mike"
+    const YOUTUBE_VIDEO_ID = "ia5X9DFyGdU"; // e.g. "dQw4w9WgXcQ"
 
     // Put your background photos here (free):
     // Option A: If you host them in a folder named "photos", use:
@@ -396,7 +392,7 @@ Love, Nana
 
     // Name
     document.getElementById("hisName").textContent =
-      (HIS_NAME === "PUT_HIS_NAME_HERE") ? "My Love" : HIS_NAME;
+      (HIS_NAME === "My forever valentine") ? "💝" : My forever valentine;
 
     // Floating hearts
     const hearts = document.querySelector(".hearts");
