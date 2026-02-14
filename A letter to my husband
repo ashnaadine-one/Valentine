@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For My Husband 💘</title>
+
+  <style>
+    :root{
+      --glass: rgba(255,255,255,.70);
+      --glass2: rgba(255,255,255,.50);
+      --ink:#111827;
+      --soft:#6b7280;
+      --shadow: 0 25px 70px rgba(0,0,0,.25);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x:hidden;
+      background:#000;
+    }
+
+    /* Background slideshow */
+    .bg {
+      position: fixed; inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(2px) saturate(1.05);
+      transform: scale(1.04);
+      z-index: -2;
+    }
+    .bgOverlay{
+      position: fixed; inset:0;
+      background: radial-gradient(800px 500px at 20% 10%, rgba(255,255,255,.14), rgba(0,0,0,.55)),
+                  linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55));
+      z-index: -1;
+    }
+
+    /* Floating hearts */
+    .hearts{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .heart{
+      position:absolute;
+      width:14px; height:14px;
+      transform: rotate(45deg);
+      opacity:.28;
+      animation: floatUp linear infinite;
+    }
+    .heart::before, .heart::after{
+      content:"";
+      position:absolute;
+      width:14px; height:14px;
+      border-radius:50%;
+      background: currentColor;
+    }
+    .heart::before{ left:-7px; top:0; }
+    .heart::after{ left:0; top:-7px; }
+    .heart{ background: currentColor; }
+    @keyframes floatUp{
+      from{ transform: translateY(110vh) rotate(45deg); }
+      to{ transform: translateY(-20vh) rotate(45deg); }
+    }
+
+    .wrap{
+      position: relative;
+      z-index: 1;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+    }
+
+    .card{
+      width: min(920px, 95vw);
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      padding: 22px;
+    }
+
+    .topRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(17,24,39,.08);
+      color: rgba(17,24,39,.85);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .title{
+      margin: 14px 0 6px;
+      font-size: clamp(30px, 4.5vw, 52px);
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+    .subtitle{
+      margin: 0 0 14px;
+      color: var(--soft);
+      font-size: clamp(14px, 2vw, 18px);
+      line-height: 1.55;
+    }
+
+    .panel{
+      margin-top: 16px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(17,24,39,.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .question{
+      margin: 0 0 10px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .btnRow{ display:flex; gap:10px; flex-wrap:wrap; }
+    button{
+      border:0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 800;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(17,24,39,.18);
+      background: #111827;
+      color: #fff;
+      transition: transform .07s ease;
+    }
+    button:active{ transform: scale(.98); }
+    button.secondary{
+      background: rgba(17,24,39,.08);
+      color: #111827;
+      box-shadow: none;
+      border: 1px solid rgba(17,24,39,.12);
+    }
+    button.ghost{
+      background: transparent;
+      color: #111827;
+      box-shadow: none;
+      border: 1px dashed rgba(17,24,39,.25);
+      font-weight: 800;
+    }
+
+    /* Envelope area */
+    .stage{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .envelopeWrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 14px;
+    }
+
+    .envelope{
+      width: min(360px, 85vw);
+      height: 220px;
+      position: relative;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.55));
+      border: 1px solid rgba(17,24,39,.12);
+      box-shadow: 0 18px 50px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+
+    /* Envelope flap */
+    .flap{
+      position:absolute;
+      inset:0;
+      clip-path: polygon(0 0, 100% 0, 50% 55%);
+      background: linear-gradient(135deg, rgba(255,182,193,.85), rgba(255,255,255,.45));
+      border-bottom: 1px solid rgba(17,24,39,.10);
+    }
+
+    .stamp{
+      position:absolute;
+      right: 14px;
+      top: 14px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(17,24,39,.10);
+      transform: rotate(10deg);
+      font-size: 26px;
+    }
+
+    .toLine{
+      position:absolute;
+      left: 16px;
+      bottom: 18px;
+      right: 16px;
+      font-weight: 800;
+      color: rgba(17,24,39,.78);
+    }
+    .toLine span{ color: rgba(17,24,39,.55); font-weight: 700; }
+
+    /* Letter */
+    .letter{
+      display:none;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(17,24,39,.10);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.18);
+      white-space: pre-wrap;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    .letter.show{ display:block; }
+
+    .funny{
+      display:none;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(17,24,39,.10);
+    }
+    .funny.show{ display:block; }
+    .emoji{
+      font-size: 46px;
+      margin-bottom: 6px;
+    }
+    .smallNote{ color: rgba(17,24,39,.65); margin: 10px 0 0; font-size: 13px; }
+
+    /* Music modal */
+    dialog{
+      width: min(900px, 92vw);
+      border:0;
+      border-radius: 18px;
+      padding:0;
+      overflow:hidden;
+      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+    }
+    dialog::backdrop{ background: rgba(0,0,0,.55); }
+    .modalHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      font-weight: 800;
+    }
+    .closeX{
+      border:0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 22px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      box-shadow:none;
+      color:#111827;
+    }
+    .closeX:hover{ background: rgba(0,0,0,.06); }
+    .videoWrap{ aspect-ratio: 16/9; background:#000; position:relative; }
+    iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  </style>
+</head>
+
+<body>
+  <div class="bg" id="bg"></div>
+  <div class="bgOverlay"></div>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="topRow">
+        <div class="badge">💘 Valentine’s • <span id="today"></span></div>
+        <button class="secondary" id="musicBtn">🎵 Play his favorite song</button>
+      </div>
+
+      <h1 class="title">My dear husband 💙</h1>
+      <p class="subtitle">Happy Valentine’s Day. I made this just for you 😄</p>
+
+      <div class="panel">
+        <p class="question">Do you want to see what I have for you today??</p>
+        <div class="btnRow">
+          <button id="yesBtn">Yes 😌</button>
+          <button class="secondary" id="noBtn">No 🙃</button>
+        </div>
+
+        <div class="stage" id="stage" style="display:none;">
+          <!-- YES path -->
+          <div id="yesArea" style="display:none;">
+            <div class="envelopeWrap">
+              <div class="envelope" aria-label="Envelope">
+                <div class="flap"></div>
+                <div class="stamp">💌</div>
+                <div class="toLine">
+                  <div>To: <span id="hisName">My Love</span></div>
+                  <div style="font-size:13px; font-weight:700; opacity:.7;">From: Your Wife 🤍</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="btnRow" style="justify-content:center;">
+              <button id="openBtn">Open ✨</button>
+              <button class="secondary" id="closeBtn">Close 🙈</button>
+            </div>
+
+            <div class="letter" id="letter">
+Hi my love,
+
+WRITE YOUR MESSAGE HERE 💌
+(You can make it emotional + funny!)
+
+Example:
+Thank you for choosing me every day.
+Even when we argue, I still choose you 😄
+You’re my favorite person and my safest place.
+
+Happy Valentine’s Day 🤍
+Love, Nana
+            </div>
+          </div>
+
+          <!-- NO path -->
+          <div class="funny" id="noArea">
+            <div class="emoji">😏</div>
+            <div style="font-weight:900; font-size:18px;">Ehhh okay…</div>
+            <div style="color:rgba(17,24,39,.75); margin-top:6px; line-height:1.5;">
+              I’ll just keep your gift for myself then 😌🎁<br/>
+              (But be careful… I might eat the chocolates.)
+            </div>
+            <p class="smallNote">Click “Yes” if you change your mind 😄</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="smallNote">
+        Tip: music usually can’t auto-play on phones, so the “Play” button is the best.
+      </p>
+    </div>
+  </div>
+
+  <!-- Music Modal -->
+  <dialog id="musicModal">
+    <div class="modalHead">
+      <div>🎶 Our Song</div>
+      <button class="closeX" id="closeMusic" aria-label="Close">✕</button>
+    </div>
+    <div class="videoWrap">
+      <iframe id="ytFrame" src="" title="YouTube player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+  </dialog>
+
+  <script>
+    // ====== PERSONALIZE THESE ======
+    const HIS_NAME = "PUT_HIS_NAME_HERE"; // e.g. "Mike"
+    const YOUTUBE_VIDEO_ID = "PUT_YOUTUBE_ID_HERE"; // e.g. "dQw4w9WgXcQ"
+
+    // Put your background photos here (free):
+    // Option A: If you host them in a folder named "photos", use:
+    // "photos/1.jpg", "photos/2.jpg", ...
+    // Option B: If you're using a host that gives you image links, paste full links.
+    const BACKGROUND_IMAGES = [
+      "photos/1.jpg",
+      "photos/2.jpg",
+      "photos/3.jpg",
+      "photos/4.jpg"
+    ];
+    // ===============================
+
+    // Date
+    document.getElementById("today").textContent =
+      new Date().toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
+
+    // Name
+    document.getElementById("hisName").textContent =
+      (HIS_NAME === "PUT_HIS_NAME_HERE") ? "My Love" : HIS_NAME;
+
+    // Floating hearts
+    const hearts = document.querySelector(".hearts");
+    const colors = ["#fb7185","#f472b6","#a78bfa","#60a5fa","#fda4af"];
+    function makeHeart(){
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.left = Math.random()*100 + "vw";
+      h.style.color = colors[Math.floor(Math.random()*colors.length)];
+      const size = 10 + Math.random()*14;
+      h.style.width = size + "px";
+      h.style.height = size + "px";
+      h.style.opacity = (0.15 + Math.random()*0.35).toFixed(2);
+      const dur = 10 + Math.random()*18;
+      h.style.animationDuration = dur + "s";
+      h.style.animationDelay = (-Math.random()*dur) + "s";
+      hearts.appendChild(h);
+      setTimeout(()=>h.remove(), dur*1000);
+    }
+    for(let i=0;i<26;i++) makeHeart();
+    setInterval(makeHeart, 950);
+
+    // Background slideshow
+    const bg = document.getElementById("bg");
+    let bgIndex = 0;
+
+    function setBg(i){
+      const url = BACKGROUND_IMAGES[i % BACKGROUND_IMAGES.length];
+      bg.style.backgroundImage = `url('${url}')`;
+    }
+    setBg(bgIndex);
+
+    if (BACKGROUND_IMAGES.length > 1){
+      setInterval(() => {
+        bgIndex = (bgIndex + 1) % BACKGROUND_IMAGES.length;
+        setBg(bgIndex);
+      }, 4500);
+    }
+
+    // Buttons logic
+    const stage = document.getElementById("stage");
+    const yesArea = document.getElementById("yesArea");
+    const noArea  = document.getElementById("noArea");
+    const letter  = document.getElementById("letter");
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      stage.style.display = "grid";
+      yesArea.style.display = "block";
+      noArea.classList.remove("show");
+      letter.classList.remove("show");
+    });
+
+    document.getElementById("noBtn").addEventListener("click", () => {
+      stage.style.display = "grid";
+      yesArea.style.display = "none";
+      noArea.classList.add("show");
+      letter.classList.remove("show");
+    });
+
+    document.getElementById("openBtn").addEventListener("click", () => {
+      letter.classList.add("show");
+      letter.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      letter.classList.remove("show");
+    });
+
+    // Music modal
+    const modal = document.getElementById("musicModal");
+    const yt = document.getElementById("ytFrame");
+
+    document.getElementById("musicBtn").addEventListener("click", () => {
+      if (YOUTUBE_VIDEO_ID === "PUT_YOUTUBE_ID_HERE"){
+        alert("Replace PUT_YOUTUBE_ID_HERE with the real YouTube video ID in the code.");
+        return;
+      }
+      yt.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`;
+      modal.showModal();
+    });
+
+    document.getElementById("closeMusic").addEventListener("click", () => {
+      modal.close();
+      yt.src = "";
+    });
+
+    modal.addEventListener("click", (e) => {
+      const r = modal.getBoundingClientRect();
+      const inside = r.top <= e.clientY && e.clientY <= r.bottom && r.left <= e.clientX && e.clientX <= r.right;
+      if (!inside) { modal.close(); yt.src = ""; }
+    });
+  </script>
+</body>
+</html>
